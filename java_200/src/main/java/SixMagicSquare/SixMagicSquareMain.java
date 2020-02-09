@@ -13,5 +13,4 @@ public class SixMagicSquareMain {
 		sms.make();
 		sms.print();
 	}
-
 }
