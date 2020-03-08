@@ -1,0 +1,2 @@
+module JavaStudy1 {
+}

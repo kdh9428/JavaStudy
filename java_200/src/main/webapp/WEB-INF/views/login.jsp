@@ -8,6 +8,6 @@
 </head>
 <body>
 <br>
-<div style="text-align:center"><a href="${url}">NaverIdLogin</a></div>
+<div style="text-align:center"><a href="${url}"><img alt="" src="resources/NaverGreen.PNG" width = "160px" height="50px"></a></div>
 </body>
 </html>
