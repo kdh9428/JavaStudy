@@ -1,5 +1,6 @@
 package Collections;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 class HashTable{
@@ -37,7 +38,6 @@ class HashTable{
 		for(char c : key.toCharArray()) {//입력받은 키의 문자열을 돌면서 아스키 코드의 값을 c에 저장한다.
 			hashcode += c;
 //			System.out.println("아스키 코드 값 확인 : " + hashcode);
-			
 		}
 		return hashcode;
 	}
@@ -47,7 +47,6 @@ class HashTable{
 		//해쉬코드를 배열방의 크기로 나눈 나머지 값을 반환한다.
 		return hashcode % data.length;
 	}
-	
 	
 	//인덱스로 배열방을 찾은 이후에 노드가  배열방에 여러개 일 경우 검색 키를 가지고 해당 노드를 찾아가야 한다.
 	Node searchKey(LinkedList<Node> list, String key) {
@@ -117,6 +116,18 @@ public class HashTableEx {
 		System.out.println(s.get("sung2"));
 		System.out.println(s.get("sung3"));
 		System.out.println(s.get("sung4"));
+		
+		ArrayList lll = new ArrayList();
+		lll.add("aaa");
+		lll.add(1, 123);
+		
+		int a = (int) lll.get(1);
+		
+		System.out.println(a);
+		
+		String b = Integer.toString((int) lll.get(1));
+		
+		System.out.println(b);
 		
 	}
 
