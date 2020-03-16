@@ -9,7 +9,32 @@ public class LinkedListEx {
 		head.append(3);
 		head.append(4);
 		head.retvieve();
-		System.out.println(head+"확인합니다. 주소를~~");
+		System.out.println("=====================");
+		
+		LinkedList1 aa = new LinkedList1();
+		aa.addFirst("asdfff");
+		aa.add(1, 23);
+		aa.addLast(234);
+		System.out.println("=======aa");
+		System.out.println(aa.get(0));
+		System.out.println(aa.get(1));
+		
+		
+		
+		Node aas = new Node(2);
+		
+		Object a;
+		a=aas;
+		System.out.println(a);
+		System.out.println("==================");
+		aa.add(0,aas);
+		System.out.println(aa);
+		
+		if(a instanceof Node) {
+			System.out.println("숫자형");
+		}else if(a instanceof String) {
+			System.out.println("문자형");
+		}
 	}
 }
 
@@ -51,25 +76,30 @@ class Node{
 	}
 }
 
-
+//LinkedList 다른 버전 공부
 class LinkedList1{
 	//첫번째 노드를 가리킨다.
 	private Node1 head;
 	private Node1 tail;
 	private int size = 0;
 	
-	private class Node1{
+	private class Node1 {
 		
-		private Object date;//데이터가 저장될 필드
+		private Object data;//데이터가 저장될 필드
 		private Node1 next; //다음 노드를 가리키는 필드
 	
 		public Node1(Object input) {
-			this.date = input;
+			Object aaa = "11";
+			System.out.println(input);
+			if(input.equals(aaa)) {
+				System.out.println("맞음");
+			}
+			this.data = input;
 			this.next = null;
 		}
 		
 		public String toString() { //노드의 내용을 쉽게 출력 확인 기능
-			return String.valueOf(this.date);
+			return String.valueOf(this.data);
 		}
 	}
 	
@@ -118,6 +148,59 @@ class LinkedList1{
 				tail=newNode;
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		if(head == null) {
+			return "[]";
+		}
+		Node1 temp = head;
+		String str = "[";
+		while(temp.next != null) {
+			str += temp.data + ", ";
+			temp = temp.next;
+		}
+		str += temp.data;
+		
+		return str+"]";
+	}
+	
+	public Object removeFirst() {
+		Node1 temp = head; //노드 탐색 
+		head = head.next;// 해드의 다음 노드를 해드에 넣는다.
+		Object returnData = new Object();
+		returnData = temp.data;
+		temp = null;
+		size--;
+		return returnData;
+	}
+	
+	public Object remove(int k) {
+		if(k==0) {
+			return removeFirst();
+		}
+		Node1 temp= node(k-1);
+		Node1 todoDeleted = temp.next;
+		temp.next = temp.next.next;
+		Object returnData = todoDeleted.data;
+		if(todoDeleted == tail) {
+			tail = temp;
+		}
+		todoDeleted = null;
+		size--;
+		return returnData;
+	}
+	
+	//list 사이즈
+	public int size() {
+	    return size;
+	}
+	
+	//엘리먼트 가져오기
+	public Object get(int k){
+	    Node1 temp = node(k);
+	    return temp.data;
 	}
 }
 
