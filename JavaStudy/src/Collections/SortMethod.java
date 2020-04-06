@@ -3,6 +3,7 @@ package Collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,14 +49,48 @@ public class SortMethod {
 		lis.add(new ECar(552));
 		lis.add(new ECar(012));
 		lis.add(new ECar(32));
+//		
+//		Collections.sort(lis);
+//		
+//		for(Iterator<ECar> a = lis.iterator();a.hasNext();)
+//			System.out.print(a.next()+"\t");
+//			System.out.println();
+
+		System.out.println("================Comparator 정렬==============");
+		// Comparator 정렬 
+		CarComp comp = new CarComp();
 		
-		Collections.sort(lis);
+//		Collections.sort(li, comp);
+		Collections.sort(lis, comp);
 		
-		for(Iterator<ECar> a = lis.iterator();a.hasNext();)
+		for(Iterator<Car> a = li.iterator();a.hasNext();)
 			System.out.print(a.next()+"\t");
 			System.out.println();
-			
-		System.out.println(lis.get(3));
+		
+		for(Iterator<ECar> a = lis.iterator();a.hasNext();)
+				System.out.print(a.next()+"\t");
+				System.out.println();
+				
+		//람다 Comparator
+		Collections.sort(li, (b1, b2) -> b2.getDisp() - b1.getDisp());
+		
+		for(Iterator<Car> a = li.iterator(); a.hasNext();)
+			System.out.print(a.next().toString()+"\t");
+		
+		System.out.println();
+		
+		//이진 탐색의 예
+		List<String> bs = Arrays.asList("Robot","Apple","Box");
+		bs = new ArrayList<>(bs);
+		
+		Collections.sort(bs,new StrComp());
+		
+		int idx = Collections.binarySearch(bs, "box",new StrComp());
+		System.out.println("이진검색 : "+bs.get(idx));
+		
+		int id = Collections.binarySearch(bs, "box",(b1, b2)-> b1.compareToIgnoreCase(b2));
+		
+		
 	}
 }
 
@@ -63,6 +98,16 @@ class Car implements Comparable<Car>{
 	private int disp;
 	public Car(int d) {disp=d;}
 	
+	
+	public int getDisp() {
+		return disp;
+	}
+
+
+	public void setDisp(int disp) {
+		this.disp = disp;
+	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
@@ -74,9 +119,25 @@ class Car implements Comparable<Car>{
 	}
 }
 
+class CarComp implements Comparator<Car>{
+	
+	@Override
+	public int compare(Car o1, Car o2) {
+		// TODO Auto-generated method stub
+		System.out.println("Car o1 의 값"+o1.getDisp()+" : " + "Car o2 의 값 : "+o2.getDisp());
+		return o2.getDisp() - o1.getDisp();
+	}
+}
+
 class ECar extends Car{
 	private int dd;
 	
+	public int getDd() {
+		return dd;
+	}
+	public void setDd(int dd) {
+		this.dd = dd;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
@@ -87,4 +148,15 @@ class ECar extends Car{
 		dd = d;
 	}
 }
+
+
+class StrComp implements Comparator<String>{
+	
+	@Override
+	public int compare(String o1, String o2) {
+		// TODO Auto-generated method stub
+		return o1.compareToIgnoreCase(o2);
+	}
+}
+
 
