@@ -1,8 +1,28 @@
 package ThreadTest;
 
 public class ThreadTest1 {
+	public static Counter cnt = new Counter();
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+		
+		Runnable task5 = () ->{
+			for(int i=0; i<1000; i++)
+				cnt.increment(); //값을 1 증가
+		};
+		Runnable task6 = () ->{
+			for(int i=0; i<1000; i++)
+				cnt.decrement(); //값을 1 감소
+		};
+		
+		Thread t5 = new Thread(task5);
+		Thread t6 = new Thread(task6);
+		t5.start();
+		t6.start();
+		
+		t5.join();	//t5이 참조하는 쓰레드의 종료를 기다림
+		t6.join();	//t6이 참조하는 쓰레드의 종료를 기다림
+		System.out.println("종료 : "+cnt.getCount());
+		
 		
 		Runnable task1 = ()->{
 			try {
@@ -43,6 +63,8 @@ public class ThreadTest1 {
 		t3.start();
 		t4.start();
 		System.out.println("End "+Thread.currentThread().getName());
+		t1.join();
+		t2.join();
 	}
 }
 
@@ -53,5 +75,21 @@ class Task extends Thread{
 	    int n2 = 20;
 	    String name = Thread.currentThread().getName();
 	    System.out.println(name + ": "+(n1+n2));
+	}
+}
+
+
+
+class Counter{
+	int count = 0; //공유되는 변수
+	
+	public void increment() {
+		count++; //첫 번째 쓰레드에 의해 실행
+	}
+	public void decrement() {
+		count--;// 또 다른 쓰레드에 의해 실행
+	}
+	public int getCount() {
+		return count;
 	}
 }
