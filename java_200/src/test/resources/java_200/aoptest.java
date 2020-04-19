@@ -11,14 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import aop.Profiler;
+import config.ServletConfiguration;
 import junittest.AService;
 import junittest.Acontroller;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/root-context.xml"
-})
+@ContextConfiguration(classes = {ServletConfiguration.class})
 @WebAppConfiguration
 public class aoptest {
 	
@@ -33,11 +31,6 @@ public class aoptest {
 	
 	@Test
 	public void testt() throws Exception {
-		
-		System.out.println(applicationContext.getBean(Profiler.class));
-		a.testa("Asdf");
-		a.testa("test check ok");
-		aService.aopTest("테스트");
-		System.out.println("확인");
+		a.testa("확인");
 	}
 }
