@@ -13,10 +13,11 @@ import org.springframework.web.servlet.view.JstlView;
 
 import NaverLogin.NaverLoginBO;
 import aop.Profiler;
+import junittest.ConnectionProvider;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"config","NaverLogin","junittest","aop"})
+@ComponentScan(basePackages = {"NaverLogin","junittest","aop"})
 @EnableAspectJAutoProxy
 public class ServletConfiguration extends WebMvcConfigurerAdapter{
 
@@ -36,15 +37,12 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter{
 	
 	@Bean
 	public NaverLoginBO naverLoginBO() {
-		NaverLoginBO login = new NaverLoginBO();
-		return login;
+		
+		return new NaverLoginBO();
 	}
 	@Bean
 	public Profiler profiler() {
-		Profiler profiler = new Profiler();
-		return profiler;
+		return new Profiler();
 	}
-	
-	
 	
 }
