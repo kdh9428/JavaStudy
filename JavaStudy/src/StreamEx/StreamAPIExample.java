@@ -2,8 +2,6 @@ package StreamEx;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
@@ -87,7 +85,7 @@ public class StreamAPIExample {
 		for (Integer i : numbers){
 			System.out.println("i = "+ i);
 		}
-		System.out.println(
+		System.out.println( 
 				Stream.of(1, 2, 3, 4, 5,128)
 						.filter(i -> i > 3)
 						.count()
