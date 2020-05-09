@@ -1,11 +1,6 @@
 package StreamEx;
 
-import MethodReference.Predicate;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.*;
 
 public class StreamTest {
 
@@ -31,5 +26,22 @@ public class StreamTest {
                 .filter(number -> number > 10)
                 .findFirst()
         );
+
+        Map<String, String> a = new HashMap<>();
+        List list = new ArrayList();
+        a.put("k","apple");
+
+        list.add(a);
+        a.put("k", "banana");
+        System.out.println(a);
+        System.out.println(list.toString());
+        list.add(a);
+        System.out.println("테슽 ++++");
+
+        list.stream().forEach(System.out::println);
+        a.forEach((a1, a2)-> System.out.println("key"+a1+" ,"+"value : "+ a2));
+
+
+        }
     }
-}
+
