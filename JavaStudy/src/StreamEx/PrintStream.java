@@ -10,7 +10,7 @@ public class PrintStream {
 
     @Override
     public String toString() {
-        return new StringBuffer("PrintStream{")
+    return new StringBuffer("PrintStream{")
                     .append("number = ")
                     .append(number)
                     .append("}")
